@@ -48,3 +48,5 @@ plt.show()
 ### Insights
 
 - SQL remains as the most popular skills, but interestingly, it has shown a gradual decline through the year of 2023.
+- Excel remains the second most popular skill, mostly staying steady until August, where it declines by almost 10% through November.
+- Python and Tableau show very similar behavior and likelihood throughout the year, except in August, where Python has a sharp but short-lived increase.
