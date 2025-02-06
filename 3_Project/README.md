@@ -50,3 +50,50 @@ plt.show()
 - SQL remains as the most popular skills, but interestingly, it has shown a gradual decline through the year of 2023.
 - Excel remains the second most popular skill, mostly staying steady until August, where it declines by almost 10% through November.
 - Python and Tableau show very similar behavior and likelihood throughout the year, except in August, where Python has a sharp but short-lived increase.
+
+## 3. How Well do Jobs and Skills Pay for Data Analysts?
+
+### Salary Analysis for Data Related Roles
+
+For this section, I filtered for data-related job roles in the United States. I then created a box plot showing the distribution of median salaries across these roles, highlighting the median salary for each. For the second part I created two data frames, one which shows the highest paying skills, and the other one showing the most in-demand skills
+
+```python
+#######for the box plot visualization#######
+sns.boxplot(data=df_US_top_6, x='salary_year_avg', y='job_title_short', order=job_order) 
+ax = plt.gca()
+ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda x, pos: f'${int(x/1000)}K'))
+ax.set_xlabel('Yearly Median Salary')
+ax.set_ylabel('')
+plt.title('Median Salary Analysis for Data Related Roles')
+plt.show()
+
+#####for the bar charts########
+fig, ax = plt.subplots(2,1)
+sns.set_theme(style='ticks')
+sns.barplot(data=df_DA_top_pay, x='median', y=df_DA_top_pay.index, ax=ax[0], hue='median', palette='dark:b_r') #plotting highest paying skills
+sns.barplot(data=df_skills, x='median', y=df_skills.index, ax=ax[1], hue='median', palette='light:b') #plotting top 10 most frequent skills
+plt.show()
+```
+View my notebook for detailed steps here: [4_Salary_Analysis.ipynb](4_Salary_Analysis.ipynb)
+
+## Visualize Data
+
+![salary_box_plot](Images/salary_box_plot.png)
+
+## Insights
+
+- Overall, as one moves higher in seniority, the median salary increases. The one interesting exception is Senior Data Analyst, which is lower than Data Engineer or Scientist. This implies that instead of trying to move to the senior counterpart to one's role, it is wiser to instead shift to a Data Engineer or Scientist position. 
+
+-  As one gets more experience and specializes, this box plot also indicates a trend towards the right. The Senior Data Engineer and Scientist roles had the most variability, which makes sense as one could imagine that the flexibility and requirement of a broad array of skills is necessary to succeed in these roles.
+
+![skills_demand](Images/skills_demand_salary.png)
+
+## Insights
+
+- We can see that advanced, niche skills like dplyr, bitbucket, and gitlab correspond to the highest median salaries. Interestingly, these are also skills with some of the lowest counts, which probably contributes to its high salary, since these skills are not very likely to be commonly found in candidates.
+
+- Very foundational skills like Tableau, SQL and Excel are very commonly found, but represent some of the skills with a corresponding lower median pay. Even though the salaries might be low, it pays to have expertise of these foundational skills, and they should not be neglected for skills with high salaries, especially at the start of one's career.
+
+- Knowing programming languages or having knowledge in visualization software will bring one closer to the higher end of the median salary range, as seen in the second chart. It highlights the importance of knowing programming languages if one wants to advance in their career.
+
+
