@@ -1,8 +1,6 @@
 # The Analysis
 
-## 1. What are the most demanded skills for the most popular data roles?
-
-To find the most demanded skills for the top 3 most popular data roles in 2023. I filtered out those positions by which ones were the most popular, and got the top 5 skills for these top roles. These visualizations highlight the most popular job titles and their top skills, showing which skills I should pay attention to depending on the role I'm looking for. 
+## 1. What are the most demanded skills for the most popular data roles? 
 
 View my notebook with detailed steps here: [2_Skills_Count.ipynb](2_Skills_Count.ipynb)
 
@@ -27,8 +25,6 @@ View my notebook with detailed steps here: [2_Skills_Count.ipynb](2_Skills_Count
 - Data Engineers require more specialized skills (AWS, Azure, Spark) compared to the other 2 roles. Data Scientists seem to lean more towards general data management and analysis tools (Tableau, SQL).
 
 ## 2. How Are In-Demand Skills Trending for Data Analysts?
-
-For this visualization, I again filtered for Data Analyst roles in the United States, and created a pivot table with the months as the index, and the skills as the columns. I then chose the top 5 skills, and created a lineplot showing how these skills were trending during 2023. 
 
 View my notebook with detailed steps here: [3_Skills_Trend.ipynb](3_Skills_Trend.ipynb)
 ### Visualize Data
@@ -55,7 +51,7 @@ plt.show()
 
 ### Salary Analysis for Data Related Roles
 
-For this section, I filtered for data-related job roles in the United States. I then created a box plot showing the distribution of median salaries across these roles, highlighting the median salary for each. For the second part I created two data frames, one which shows the highest paying skills, and the other one showing the most in-demand skills
+View my notebook for detailed steps here: [4_Salary_Analysis.ipynb](4_Salary_Analysis.ipynb)
 
 ```python
 #######for the box plot visualization#######
@@ -74,8 +70,6 @@ sns.barplot(data=df_DA_top_pay, x='median', y=df_DA_top_pay.index, ax=ax[0], hue
 sns.barplot(data=df_skills, x='median', y=df_skills.index, ax=ax[1], hue='median', palette='light:b') #plotting top 10 most frequent skills
 plt.show()
 ```
-View my notebook for detailed steps here: [4_Salary_Analysis.ipynb](4_Salary_Analysis.ipynb)
-
 ## Visualize Data
 
 ![salary_box_plot](Images/salary_box_plot.png)
@@ -95,5 +89,37 @@ View my notebook for detailed steps here: [4_Salary_Analysis.ipynb](4_Salary_Ana
 - Very foundational skills like Tableau, SQL and Excel are very commonly found, but represent some of the skills with a corresponding lower median pay. Even though the salaries might be low, it pays to have expertise of these foundational skills, and they should not be neglected for skills with high salaries, especially at the start of one's career.
 
 - Knowing programming languages or having knowledge in visualization software will bring one closer to the higher end of the median salary range, as seen in the second chart. It highlights the importance of knowing programming languages if one wants to advance in their career.
+
+## 4. What Are The Most Optimal Skills for Data Analysts?
+
+```python
+from adjustText import adjust_text
+sns.scatterplot(
+    data=df_plot, 
+    x='skill_percent',
+    y='median_salary',
+    hue='technology'
+    )
+sns.set_theme(style='ticks')
+sns.despine()
+plt.tight_layout()
+plt.show()
+```
+View my notebook for detailed steps here: 
+[5_Optimal_Skills.ipynb](5_Optimal_Skills.ipynb)
+
+## Results
+
+![](Images/optimal_skills.png)
+
+## Insights
+
+- The programming skills tend to stay in the higher
+paying regions($90k - $97k), meanwhile their likelihood of being in a given job posting highly varies.
+
+- Analyst tools (colored orange) are quite common, showing that visualization and foundational data analysis software is still very needed and crucial in data roles. Overall, however, their median salaries are quite low.
+
+- In summary, having experience with programming and analyst tools seems to be the perfect combination to maximize both likelihood in showing up in job postings and having a higher salary. 
+
 
 
