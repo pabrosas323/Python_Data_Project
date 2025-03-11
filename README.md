@@ -1,5 +1,50 @@
 # The Analysis
 
+## Exploratory Data Analysis
+View my notebook with detailed steps here:
+[Exploratory_Data_Analysis.ipynb](1_Exploratory_Data_Analysis_Intro.ipynb)
+
+
+### Visualize Data
+```python
+#for top 10 locations
+sns.set_theme(style='ticks') #dims color to make it more paleatable 
+sns.barplot(data=df_plot, x='count', y='job_location', hue='count', palette='dark:b_r', legend=False) #hue creates gradient based on number of counts
+sns.despine() #removes top and right spines from plot
+plt.title('Top 10 Job Locations By Number of Job Postings')
+plt.xlabel('Number of Job Postings')
+plt.ylabel('Job Locations')
+plt.show()
+
+fig, ax = plt.subplots(1,3)
+dict_column = {
+    'job_work_from_home': 'Work from Home',
+    'job_no_degree_mention': 'Degree Requirement',
+    'job_health_insurance': 'Health Insurance Offered' #dictionary of columns in df to titles for each corresponding pie chart
+}
+# for pie charts
+for i, (column, title) in enumerate(dict_column.items()): #loop through each column and title in dictionary
+   ax[i].pie(df[column].value_counts(), startangle=90, autopct='%1.1f%%', labels=['False', 'True'])
+   ax[i].set_title(title)
+   
+fig.tight_layout()   
+plt.show()
+# for top 10 companies
+df_plot = df_DA_US['company_name'].value_counts().head(10).to_frame() #creating a df to plot top 10 companies
+
+sns.set_theme(style='ticks') #dims color to make it more paleatable 
+sns.barplot(data=df_plot, x='count', y='company_name', hue='count', palette='dark:b_r', legend=False) #hue creates gradient based on number of counts
+sns.despine() #removes top and right spines from plot
+plt.title('Top 10 Companies By Number of Job Postings')
+plt.xlabel('Number of Job Postings')
+plt.ylabel('Companies')
+plt.show()
+
+```
+![](top_10_locations.png)
+![](pie_charts.png)
+![](top_10_companies.png)
+
 ## 1. What are the most demanded skills for the most popular data roles? 
 
 View my notebook with detailed steps here: [2_Skills_Count.ipynb](2_Skills_Count.ipynb)
